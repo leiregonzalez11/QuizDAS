@@ -16,8 +16,8 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        /*Cargamos la BD...*/
         GestorDB dbHelper = GestorDB.getInstance(this);
-        //GestorDB dbHelper = new GestorDB(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
     }
@@ -30,17 +30,17 @@ public class Inicio extends AppCompatActivity {
     }
 
     /** Called when the user taps the registrase button */
-    /*public void registrase(View view) {
-        Intent intent = new Intent(this, Inicio.class);
+    public void registrase(View view) {
+        Intent intent = new Intent(this, Registrarse.class);
         startActivity(intent);
 
-    }*/
+    }
 
     /** Called when the user taps the Salir button */
     public void salir(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
 }

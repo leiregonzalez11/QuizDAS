@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public void entrar(View view) {
         Intent intent = new Intent(this, Inicio.class);
         startActivity(intent);
+        finish();
 
     }
 

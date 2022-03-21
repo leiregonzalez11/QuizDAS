@@ -23,7 +23,7 @@ public class GestorDB extends SQLiteOpenHelper{
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         if (sInstance == null) {
-
+            context.deleteDatabase("quizDB");
             sInstance = new GestorDB(context.getApplicationContext());
         }
         return sInstance;
@@ -33,8 +33,8 @@ public class GestorDB extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase){
         loaders loader = new loaders();
         loader.crearTablas(sqLiteDatabase);
-        /*loader.insertarCategorias(sqLiteDatabase);
-        loader.insertarPreguntas(sqLiteDatabase);*/
+        loader.insertarCategorias(sqLiteDatabase);
+        //loader.insertarPreguntas(sqLiteDatabase);
     }
 
     @Override

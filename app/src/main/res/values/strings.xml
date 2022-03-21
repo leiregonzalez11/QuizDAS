@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">quizDAS</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="nombreVacio">El nombre no puede estar vacío.</string>
+    <string name="nombreLargo">El nombre no puede tener más de 30 caracteres.</string>
+    <string name="passwdVacia">La contraseña no puede estar vacía.</string>
+    <string name="passwdLarga">La contraseña no puede tener más de 15 caracteres</string>
+    <string name="passwdNoCoincide">Las contraseñas no coinciden.</string>
+    <string name="tlfnoLargo">La longitud del teléfono no puede superar los 9 caracteres.</string>
+    <string name="tlfnoNoValido">El teléfono sólo debe contener caracteres numéricos y debe empezar por 6 o 7.</string>
+    <string name="emailVacio">El email no puede estar vacío.</string>
+    <string name="emailNoValido">El email introducido no es correcto.</string>
+    <string name="dniNoValido">El DNI introducido no es correcto.</string>
+    <string name="dniVacio">El DNI no puede estar vacío.</string>
 </resources>
