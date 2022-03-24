@@ -4,9 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.IOException;
+
 public class GestorDB extends SQLiteOpenHelper{
 
     private static GestorDB sInstance;
+    private static Context context;
     private static final String DATABASE_NAME = "quizDB";
     private static final int DATABASE_VERSION = 1;
 
@@ -15,6 +18,7 @@ public class GestorDB extends SQLiteOpenHelper{
      */
     private GestorDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
 
     }
 
@@ -34,7 +38,11 @@ public class GestorDB extends SQLiteOpenHelper{
         loaders loader = new loaders();
         loader.crearTablas(sqLiteDatabase);
         loader.insertarCategorias(sqLiteDatabase);
-        //loader.insertarPreguntas(sqLiteDatabase);
+        try {
+            loader.insertarPreguntas(sqLiteDatabase, context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

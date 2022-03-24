@@ -2,7 +2,9 @@ package com.example.quizdas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,6 +16,13 @@ public class IniciarSesion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+
+    public void acceder(View view){
+        Intent intent = new Intent(this, bienvenida.class);
+        startActivity(intent);
+        finish();
     }
 
     //TODO: Modificar de registro a inicio de sesion

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.quizdas">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,15 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizDAS">
         <activity
+            android:name=".condicionesUso"
+            android:exported="false" />
+        <activity
+            android:name=".bienvenida"
+            android:exported="false" />
+        <activity
             android:name=".Registrarse"
             android:exported="false" />
         <activity
             android:name=".IniciarSesion"
             android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
         <activity
             android:name=".Inicio"
             android:exported="false" />

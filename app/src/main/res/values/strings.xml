@@ -11,4 +11,20 @@
     <string name="emailNoValido">El email introducido no es correcto.</string>
     <string name="dniNoValido">El DNI introducido no es correcto.</string>
     <string name="dniVacio">El DNI no puede estar vacío.</string>
+    <string name="checkboxNoSelecc">Debe aceptar las condiciones para poder registrarse.</string>
+    <string name="dialog_registrarse_titulo">"Registro Completado"</string>
+    <string name="dialog_registrarse">¡Enhorabuena! Te has registrado correctamente.</string>
+    <string name="dialog_buttonaceptar">Aceptar</string>
+    <string name="titulo_condiciones">TÉRMINOS Y CONDICIONES DE USO</string>
+    <string name="condiciones">El Servicio y todos los materiales incluidos o transferidos, incluyendo,
+        sin limitación, software, imágenes, texto, gráficos, logotipos, patentes, marcas registradas,
+        marcas de servicio, derechos de autor, fotografías, audio, videos, música y todos los Derechos de
+        Propiedad Intelectual relacionados con ellos, son la propiedad exclusiva de quizDAS S.L. Salvo que se indique explícitamente en este documento,
+        no se considerará que nada en estos Términos crea una licencia en o bajo ninguno de dichos Derechos de Propiedad Intelectual, y tu aceptas no vender,
+        licenciar, alquilar, modificar, distribuir, copiar, reproducir, transmitir, exhibir públicamente, realizar públicamente, publicar, adaptar, editar o
+        crear trabajos derivados de los mismos.\n
+
+        Para más información, contacte con nosotros:
+        hola@quizdas.com
+    </string>
 </resources>

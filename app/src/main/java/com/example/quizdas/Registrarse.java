@@ -1,16 +1,22 @@
 package com.example.quizdas;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-public class Registrarse extends AppCompatActivity {
+public class Registrarse extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +30,12 @@ public class Registrarse extends AppCompatActivity {
             public void onClick(View view) {
                 if (validarRegistro()){ //En caso de que todos los datos sean correctos:
 
-                    //TODO: Terminar
+                    //Añadir datos a la BD
 
+                    //Mostramos una alerta de registro correcto
+                    DialogFragment registraseAlert = new RegistrarseDialogFragment();
+                    registraseAlert.show(getSupportFragmentManager(),"registrarse_dialog");
                 }
-
-
             }
         });
     }
@@ -96,6 +103,7 @@ public class Registrarse extends AppCompatActivity {
         }
 
         //Validamos la contraseña
+        //NOTA: No se comprueba si las contraseñas de confirmación no son correctas, ya que, en caso de que no coincidan, salta ya un error.
         EditText textPasswd1 = findViewById(R.id.textPasswdRegistro);
         String passwd = textPasswd1.getText().toString();
         EditText textPasswd2 = findViewById(R.id.textPasswdRegistro2);
@@ -116,9 +124,20 @@ public class Registrarse extends AppCompatActivity {
                 valido = false;
             }
         }
-        //NOTA: No se comprueba si las contraseñas de confirmación no son correctas, ya que, en caso de que no coincidan, salta ya un eror.
+
+        //Comprobamos que el Check Box esté marcado
+        CheckBox checkCondiciones = findViewById(R.id.checkBox);
+        if (!checkCondiciones.isChecked()) { //Si no está seleccionado
+            Toast.makeText(getApplicationContext(), getString(R.string.checkboxNoSelecc), Toast.LENGTH_SHORT).show();
+            valido = false;
+        }
 
         return valido;
 
+    }
+
+    public void condicionesdeUso(View view) {
+        Intent intent = new Intent(this, condicionesUso.class);
+        startActivity(intent);
     }
 }

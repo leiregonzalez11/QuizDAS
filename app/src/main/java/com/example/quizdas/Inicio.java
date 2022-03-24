@@ -20,6 +20,7 @@ public class Inicio extends AppCompatActivity {
         GestorDB dbHelper = GestorDB.getInstance(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+
     }
 
     /** Called when the user taps the Iniciar Sesión button */
