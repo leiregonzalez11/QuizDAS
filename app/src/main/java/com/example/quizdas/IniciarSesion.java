@@ -20,16 +20,24 @@ public class IniciarSesion extends AppCompatActivity {
 
 
     public void acceder(View view){
-        Intent intent = new Intent(this, bienvenida.class);
-        startActivity(intent);
-        finish();
+
+        if (validarDatos()){
+            if (validarInicioSesion()){
+                Intent intent = new Intent(this, bienvenida.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+
+
+
     }
 
-    //TODO: Modificar de registro a inicio de sesion
-    public boolean validarInicioSesion() {
+    public boolean validarDatos() {
+
         boolean valido = true;
         //Validamos el email
-        EditText textEmail = findViewById(R.id.textEmailRegistro);
+        EditText textEmail = findViewById(R.id.textEmailLogin);
         String email = textEmail.getText().toString();
         Pattern patternEmail = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -44,26 +52,45 @@ public class IniciarSesion extends AppCompatActivity {
         }
 
         //Validamos la contraseña
-        EditText textPasswd1 = findViewById(R.id.textPasswdRegistro);
+        EditText textPasswd1 = findViewById(R.id.textPaswdLogin);
         String passwd = textPasswd1.getText().toString();
-        EditText textPasswd2 = findViewById(R.id.textPasswdRegistro2);
-        String passwdConf = textPasswd2.getText().toString();
-        if (!passwdConf.equals(passwd)) { //Si son distintas
-            Toast.makeText(getApplicationContext(), getString(R.string.passwdNoCoincide), Toast.LENGTH_SHORT).show();
+        if (passwd.equals("")) { //Si el EditText de Password está vacío
+            Toast.makeText(getApplicationContext(), getString(R.string.passwdVacia), Toast.LENGTH_SHORT).show();
             textPasswd1.setText("");
-            textPasswd2.setText("");
             valido = false;
-        } else {
-            if (passwd.equals("")) { //Si el EditText de Password está vacío
-                Toast.makeText(getApplicationContext(), getString(R.string.passwdVacia), Toast.LENGTH_SHORT).show();
-                textPasswd1.setText("");
-                valido = false;
-            } else if (passwd.length() > 16) { //Si el EditText de Password supera la longitud máxima permitida
-                Toast.makeText(getApplicationContext(), getString(R.string.passwdLarga), Toast.LENGTH_SHORT).show();
-                textPasswd1.setText("");
-                valido = false;
-            }
+        } else if (passwd.length() <8 || passwd.length() > 16) { //Si el password no cumple la longitud mínima o máxima
+            Toast.makeText(getApplicationContext(), getString(R.string.passwdLarga), Toast.LENGTH_SHORT).show();
+            textPasswd1.setText("");
+            valido = false;
         }
+
+        return valido;
+    }
+
+    public boolean validarInicioSesion() {
+
+        boolean valido = true;
+
+        //Validamos el email
+        EditText textEmail = findViewById(R.id.textEmailLogin);
+        String email = textEmail.getText().toString();
+
+        GestorDB dbHelper = GestorDB.getInstance(this);
+        if (!dbHelper.buscarUsuario(email)){
+            Toast.makeText(getApplicationContext(), getString(R.string.usuarioNoexiste) + " " + email, Toast.LENGTH_SHORT).show();
+            textEmail.setText("");
+            valido = false;
+        }
+
+        //Validamos la contraseña
+        EditText textPasswd1 = findViewById(R.id.textPaswdLogin);
+        String passwd = textPasswd1.getText().toString();
+        if (!dbHelper.validarContraseña(email,passwd)){
+            Toast.makeText(getApplicationContext(), getString(R.string.contraseñaIncorrecta), Toast.LENGTH_SHORT).show();
+            textEmail.setText("");
+            valido = false;
+        }
+
         return valido;
     }
 }

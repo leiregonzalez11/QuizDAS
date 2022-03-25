@@ -4,8 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import android.app.Activity;
-import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,13 +23,18 @@ public class Registrarse extends AppCompatActivity{
         setContentView(R.layout.activity_register);
 
         Button registrarBoton = findViewById(R.id.buttonRegistrarse);
+        GestorDB dbHelper = GestorDB.getInstance(this);
 
         registrarBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validarRegistro()){ //En caso de que todos los datos sean correctos:
 
+                    //Obtenemos los datos de la interfaz
+                    ContentValues values = obtenerDatos();
+
                     //Añadir datos a la BD
+                    dbHelper.insertarUsuario(values);
 
                     //Mostramos una alerta de registro correcto
                     DialogFragment registraseAlert = new RegistrarseDialogFragment();
@@ -77,11 +81,11 @@ public class Registrarse extends AppCompatActivity{
         EditText texttlfno = findViewById(R.id.textPhone);
         String tlfno = texttlfno.getText().toString();
         Pattern tlfnoRegex = Pattern.compile("^?[67][0-9]{8}$"); //6 o 7 solo 1 vez y entre 0-9 se repite 8 veces
-        if (tlfno.length() > 9) {//Si el teléfono supera la longitud maxima
+        if (!tlfno.equals("") && tlfno.length() > 9) {//Si el teléfono supera la longitud maxima
             Toast.makeText(getApplicationContext(), getString(R.string.tlfnoLargo), Toast.LENGTH_SHORT).show();
             texttlfno.setText("");
             valido = false;
-        } else if (!tlfnoRegex.matcher(tlfno).matches()){ //Si el teléfono no cumple los requisitos del regex
+        } else if (!tlfno.equals("") && !tlfnoRegex.matcher(tlfno).matches()){ //Si el teléfono no cumple los requisitos del regex
             Toast.makeText(getApplicationContext(), getString(R.string.tlfnoNoValido), Toast.LENGTH_SHORT).show();
             texttlfno.setText("");
             valido = false;
@@ -118,7 +122,7 @@ public class Registrarse extends AppCompatActivity{
                 Toast.makeText(getApplicationContext(), getString(R.string.passwdVacia), Toast.LENGTH_SHORT).show();
                 textPasswd1.setText("");
                 valido = false;
-            } else if (passwd.length() > 16) { //Si el EditText de Password supera la longitud máxima permitida
+            } else if (passwd.length() < 8 || passwd.length() > 16) { //Si el EditText de Password no cumple la longitud
                 Toast.makeText(getApplicationContext(), getString(R.string.passwdLarga), Toast.LENGTH_SHORT).show();
                 textPasswd1.setText("");
                 valido = false;
@@ -134,6 +138,28 @@ public class Registrarse extends AppCompatActivity{
 
         return valido;
 
+    }
+
+    public ContentValues obtenerDatos(){
+
+        ContentValues values = new ContentValues();
+        EditText textNombre = findViewById(R.id.textNombre);
+        String nombre = textNombre.getText().toString();
+        values.put("nombre", nombre);
+        EditText textDNI = findViewById(R.id.textDNI);
+        String dni = textDNI.getText().toString();
+        values.put("dni", dni);
+        EditText texttlfno = findViewById(R.id.textPhone);
+        String tlfno = texttlfno.getText().toString();
+        values.put("tel", tlfno);
+        EditText textEmail = findViewById(R.id.textEmailRegistro);
+        String email = textEmail.getText().toString();
+        values.put("email", email);
+        EditText textPasswd1 = findViewById(R.id.textPasswdRegistro);
+        String passwd = textPasswd1.getText().toString();
+        values.put("password", passwd);
+
+        return values;
     }
 
     public void condicionesdeUso(View view) {
