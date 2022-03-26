@@ -8,11 +8,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/quizdas1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizDAS">
+        <activity
+            android:name=".numPreguntas"
+            android:exported="false" />
+        <activity
+            android:name=".elegirCategorias"
+            android:exported="false" />
         <activity
             android:name=".condicionesUso"
             android:exported="false" />

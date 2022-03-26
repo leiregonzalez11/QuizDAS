@@ -21,16 +21,18 @@ public class IniciarSesion extends AppCompatActivity {
 
     public void acceder(View view){
 
-        if (validarDatos()){
-            if (validarInicioSesion()){
+        if (validarDatos()) {
+            if (validarInicioSesion()) {
+
+                EditText textEmail = findViewById(R.id.textEmailLogin);
+                String email = textEmail.getText().toString();
+
                 Intent intent = new Intent(this, bienvenida.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
                 finish();
             }
         }
-
-
-
     }
 
     public boolean validarDatos() {

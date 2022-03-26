@@ -46,6 +46,7 @@ public class Registrarse extends AppCompatActivity{
 
     public boolean validarRegistro() {
         boolean valido = true;
+        GestorDB dbHelper = GestorDB.getInstance(this);
 
         //Validamos el nombre
         EditText textNombre = findViewById(R.id.textNombre);
@@ -76,6 +77,12 @@ public class Registrarse extends AppCompatActivity{
             textDNI.setText("");
             valido = false;
         }
+        else if (dbHelper.buscarDni(dni)) {
+            //Si el DNI ya existe en la BD
+            Toast.makeText(getApplicationContext(), getString(R.string.dniYaExiste), Toast.LENGTH_SHORT).show();
+            textDNI.setText("");
+            valido = false;
+        }
 
         //Validamos el teléfono, en caso de que hubiera
         EditText texttlfno = findViewById(R.id.textPhone);
@@ -102,6 +109,10 @@ public class Registrarse extends AppCompatActivity{
             valido = false;
         }else if (!patternEmail.matcher(email).matches()) { //Si el email no es correcto
             Toast.makeText(getApplicationContext(), getString(R.string.emailNoValido), Toast.LENGTH_SHORT).show();
+            textEmail.setText("");
+            valido = false;
+        }else if (dbHelper.buscarUsuario(email)) { //Si el email utilizado ya existe
+            Toast.makeText(getApplicationContext(), getString(R.string.emailYaExiste), Toast.LENGTH_SHORT).show();
             textEmail.setText("");
             valido = false;
         }

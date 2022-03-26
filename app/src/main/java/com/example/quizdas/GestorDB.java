@@ -43,30 +43,29 @@ public class GestorDB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLitedatabase){
-        crearTablas(sqLitedatabase);
-        insertarCategorias(sqLitedatabase);
+        crearTablas();
+        insertarCategorias();
         try {
-            insertarPreguntas(sqLitedatabase);
+            insertarPreguntas();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 
     }
 
-    public void crearTablas(SQLiteDatabase sqLiteDatabase){
+    public void crearTablas(){
 
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         //Esquema de la tabla Usuario
         String query1 = "CREATE TABLE IF NOT EXISTS Usuario (idUser INTEGER NOT NULL PRIMARY KEY AutoIncrement," +
                 "nombre VARCHAR(30) NOT NULL, " +
-                "dni VARCHAR(9) NOT NULL," +
+                "dni VARCHAR(9) NOT NULL UNIQUE," +
                 "tel int(9)," +
-                "email VARCHAR NOT NULL," +
+                "email VARCHAR NOT NULL UNIQUE," +
                 "password VARCHAR(15) NOT NULL);";
         Log.d("Tabla Usuario", query1);
         sqLiteDatabase.execSQL(query1);
@@ -92,14 +91,17 @@ public class GestorDB extends SQLiteOpenHelper{
 
     }
 
-    public void insertarCategorias(SQLiteDatabase sqLiteDatabase){
+    public void insertarCategorias(){
 
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         String query = "INSERT INTO Categoria VALUES (1, 'Deportes'),(2, 'Entretenimiento'),(3, 'Historia'),(4, 'Geografia'),(5, 'Ciencias'), " +
                 "(6, 'Lengua y Arte'),(7, 'Matematicas'),(8, 'Musica'),(9, 'Gastronomia'),(10, 'Moda'),(11, 'Tecnología');";
         sqLiteDatabase.execSQL(query);
     }
 
-    public void insertarPreguntas(SQLiteDatabase sqLiteDatabase) throws IOException {
+    public void insertarPreguntas() throws IOException {
+
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
 
         //Carga de datos desde un archivo .txt usando res/raw
         InputStream file = context.getResources().openRawResource(R.raw.preguntas);
@@ -120,18 +122,13 @@ public class GestorDB extends SQLiteOpenHelper{
     }
 
     public void insertarUsuario(ContentValues values){
-
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
-        /*String query = "INSERT INTO Usuario VALUES (" + values[0] + "," + values[1] + "," + values[2] + "," +values[3] + "," + values[4] +");";
-        Log.d("Query: ", query);
-        sqLiteDatabase.execSQL(query);*/
-
         sqLiteDatabase.insert("Usuario", null, values);
     }
 
     public boolean buscarUsuario(String email){
-
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+
         boolean existe = true;
         Cursor c = sqLiteDatabase.rawQuery("SELECT email FROM Usuario WHERE email = \'" + email + "\';", null);
         if (!c.moveToNext()){
@@ -140,8 +137,18 @@ public class GestorDB extends SQLiteOpenHelper{
         return existe;
     }
 
-    public boolean validarContraseña(String email, String passwd){
+    public boolean buscarDni(String dni){
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
 
+        boolean existe = true;
+        Cursor c = sqLiteDatabase.rawQuery("SELECT idUser FROM Usuario WHERE dni = \'" + dni + "\';", null);
+        if (!c.moveToNext()){
+            existe = false;
+        }
+        return existe;
+    }
+
+    public boolean validarContraseña(String email, String passwd){
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         boolean existe = true;
         Cursor c = sqLiteDatabase.rawQuery("SELECT password FROM Usuario WHERE email = \'" + email + "\';", null);
@@ -153,5 +160,34 @@ public class GestorDB extends SQLiteOpenHelper{
         return existe;
     }
 
+    public String obtenerNombreUser(String email){
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+        boolean existe = true;
+        String name = "";
+        Cursor c = sqLiteDatabase.rawQuery("SELECT nombre FROM Usuario WHERE email = \'" + email + "\';", null);
+        while (c.moveToNext()){
+            name = c.getString(0);
+
+        }
+        return name;
+    }
+
+    public String [] obtenerCategorias (){
+
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+
+        boolean existe = true;
+        String nameCat = "";
+        int i = 0;
+        String [] categorias = new String[11];
+
+        Cursor c = sqLiteDatabase.rawQuery("SELECT categoria FROM Categoria ORDER BY categoria ASC;", null);
+        while (c.moveToNext()){
+            nameCat = c.getString(0);
+            categorias[i] = nameCat;
+            i++;
+        }
+        return categorias;
+    }
 
 }

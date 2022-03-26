@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">quizDAS</string>
+    <string name="app_name">QuizDAS</string>
+    <string name="whatis">¿Qué es QuizDAS?</string>
     <string name="nombreVacio">El nombre no puede estar vacío.</string>
     <string name="nombreLargo">El nombre no puede tener más de 30 caracteres.</string>
     <string name="passwdVacia">La contraseña no puede estar vacía.</string>
@@ -9,9 +10,11 @@
     <string name="tlfnoNoValido">El teléfono sólo debe contener caracteres numéricos y debe empezar por 6 o 7.</string>
     <string name="emailVacio">El email no puede estar vacío.</string>
     <string name="emailNoValido">El email introducido no es correcto.</string>
+    <string name="emailYaExiste">El email introducido ya está registrado.</string>
     <string name="usuarioNoexiste">No existe ningún usuario con el email </string>
     <string name="contraseñaIncorrecta">Contraseña incorrecta, inténtelo de nuevo.</string>
     <string name="dniNoValido">El DNI introducido no es correcto.</string>
+    <string name="dniYaExiste">El DNI introducido ya está registrado.</string>
     <string name="dniVacio">El DNI no puede estar vacío.</string>
     <string name="checkboxNoSelecc">Debe aceptar las condiciones para poder registrarse.</string>
     <string name="dialog_registrarse_titulo">"Registro Completado"</string>
@@ -29,4 +32,6 @@
         Para más información, contacte con nosotros:
         hola@quizdas.com
     </string>
+    <string name="msgBienvenida">¿Qué te apetece hacer hoy?</string>
+    <string name="catPregunta">Elige tus categorías favoritas para jugar:</string>
 </resources>

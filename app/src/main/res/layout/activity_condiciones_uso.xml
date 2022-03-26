@@ -6,28 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".condicionesUso">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="224dp"
-        android:layout_height="48dp"
-        android:fontFamily="cursive"
-        android:text="QuizDas"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="34sp"
-        android:visibility="visible"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="213dp"
+        android:layout_height="89dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.051"
+        app:srcCompat="@drawable/quizdas2" />
 
     <TextView
         android:id="@+id/textCondiciones"
         android:layout_width="378dp"
         android:layout_height="32dp"
-        android:fontFamily="@font/asar"
+        android:fontFamily="@font/bubblegum_sans"
         android:text="@string/titulo_condiciones"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -41,41 +35,43 @@
         app:layout_constraintVertical_bias="0.134" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="352dp"
-        android:layout_height="516dp"
-        android:background="#4F270147"
+        android:layout_width="362dp"
+        android:layout_height="566dp"
+        android:background="#319C27B0"
         android:foregroundTint="#E6E1D9D9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599">
+        app:layout_constraintVertical_bias="0.577">
 
         <TextView
             android:id="@+id/textCond"
-            android:layout_width="310dp"
-            android:layout_height="497dp"
-            android:fontFamily="@font/asar"
+            android:layout_width="342dp"
+            android:layout_height="563dp"
+            android:fontFamily="@font/bubblegum_sans"
             android:text="@string/condiciones"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.484" />
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/volverButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="51dp"
+        android:fontFamily="@font/bubblegum_sans"
         android:onClick="volver"
         android:text="Volver"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
