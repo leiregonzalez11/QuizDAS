@@ -21,11 +21,16 @@ public class Inicio extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
     }
 
+    /** Called when the user taps the Qué Es button */
+    public void whatIs(View view){
+        Intent intent = new Intent(this, queEsQuizDAS.class);
+        startActivity(intent);
+    }
+
     /** Called when the user taps the Iniciar Sesión button */
     public void iniciarSesion(View view) {
         Intent intent = new Intent(this, IniciarSesion.class);
         startActivity(intent);
-
     }
 
     /** Called when the user taps the registrase button */

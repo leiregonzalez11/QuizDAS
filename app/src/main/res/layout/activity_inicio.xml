@@ -68,6 +68,7 @@
         android:layout_width="274dp"
         android:layout_height="65dp"
         android:fontFamily="@font/bubblegum_sans"
+        android:onClick="whatIs"
         android:text="@string/whatis"
         android:textSize="20sp"
         android:textStyle="bold"

@@ -38,5 +38,10 @@
     <string name="minmaxpreg">El número de preguntas tiene que ser mínimo 1 y máximo 20</string>
     <string name="numpregvacio">El número de preguntas no puede estar vacío</string>
     <string name="noitemSelected">El número de preguntas no puede estar vacío</string>
+    <string name="dialog_titulocorrecta">¡RESPUESTA CORRECTA!</string>
+    <string name="dialog_correcta">Eres un@ crack..</string>
+    <string name="dialog_buttoncorrectaaceptar">Aceptar</string>
+    <string name="queEsQuizDAS">¿Qué es QuizDAS?</string>
+
 
 </resources>

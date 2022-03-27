@@ -225,7 +225,7 @@ public class GestorDB extends SQLiteOpenHelper{
         Pregunta[] preguntas = new Pregunta[numPreg];
         int k = 0;
         while (!idPregsJuego.isEmpty()) {
-            Cursor cu = sqLiteDatabase.rawQuery("SELECT pregunta, resp1, resp2, resp2, respCorrecta FROM Preguntas WHERE idPreg = " + idPregsJuego.pop() + ";", null);
+            Cursor cu = sqLiteDatabase.rawQuery("SELECT pregunta, resp1, resp2, resp3, respCorrecta FROM Preguntas WHERE idPreg = " + idPregsJuego.pop() + ";", null);
             while (cu.moveToNext()) {
                 String pregunta = cu.getString(0);
                 String resp1 = cu.getString(1);
@@ -241,4 +241,63 @@ public class GestorDB extends SQLiteOpenHelper{
         }
         return preguntas;
     }
+
+    public Pregunta [] obtenerPreguntasAleatorio(int numPreg) {
+
+        SQLiteDatabase sqLiteDatabase = sInstance.getReadableDatabase();
+
+        //Obtenemos el número de preguntas total
+        int numPreguntasTotal = 0;
+        Cursor c = sqLiteDatabase.rawQuery("SELECT COUNT(idPreg) FROM Preguntas;", null);
+        while (c.moveToNext()) {
+            numPreguntasTotal = c.getInt(0);
+        }
+        c.close();
+
+        //Obtenemos los ids de las preguntas
+
+        int[] idPregs = new int[numPreguntasTotal];
+        int i = 0;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT idPreg FROM Preguntas;", null);
+        while (cursor.moveToNext()) {
+            int idPreg = cursor.getInt(0);
+            idPregs[i] = idPreg;
+            i++;
+        }
+        cursor.close();
+
+        Stack<Integer> idPregsJuego = new Stack<Integer>();
+
+        //Elegimos las preguntas al azar (sin repeticion)
+        for (int j = 0; j < numPreg; j++) {
+            int pos = (int) (Math.random() * (idPregs[idPregs.length - 1] - idPregs[0] + 1) + idPregs[0]);
+            while (idPregsJuego.contains(pos)) {
+                pos = (int) (Math.random() * (idPregs[idPregs.length - 1] - idPregs[0] + 1) + idPregs[0]);
+            }
+            idPregsJuego.push(pos);
+            Log.d("Preguntas:", idPregsJuego.toString());
+        }
+
+        //Obtenemos los valores de las preguntas
+
+        Pregunta[] preguntas = new Pregunta[numPreg];
+        int k = 0;
+        while (!idPregsJuego.isEmpty()) {
+            Cursor cu = sqLiteDatabase.rawQuery("SELECT pregunta, resp1, resp2, resp3, respCorrecta FROM Preguntas WHERE idPreg = " + idPregsJuego.pop() + ";", null);
+            while (cu.moveToNext()) {
+                String pregunta = cu.getString(0);
+                String resp1 = cu.getString(1);
+                String resp2 = cu.getString(2);
+                String resp3 = cu.getString(3);
+                String respCorrecta = cu.getString(4);
+                Pregunta preg = new Pregunta(pregunta, resp1, resp2, resp3, respCorrecta);
+                Log.d("Pregunta", resp1);
+                preguntas[k] = preg;
+                k++;
+            }
+            cu.close();
+        }
+        return preguntas;
+    }
+
 }

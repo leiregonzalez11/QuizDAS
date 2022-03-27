@@ -160,7 +160,7 @@ INSERT INTO Preguntas VALUES (159,'¿Cuántos días tardará un caracol en llega
 INSERT INTO Preguntas VALUES (160,'Si un triángulo equilátero, y un círculo tienen la misma área, ¿cuál de ellos tiene un perímetro mayor?','El triángulo equilátero','El circulo','Ambos por igual','El triángulo equilátero',7);
 INSERT INTO Preguntas VALUES (161,'¿Cuantas partes forman 1 Entero?','Una parte','Tres partes','Dos partes','Una parte',7);
 INSERT INTO Preguntas VALUES (162,'7 decenas es igual a','70','700','7','70',7);
-INSERT INTO Preguntas VALUES (163,'El resultado de sumar 1/4 + 1/4 es igual a','44774','44653','44775','44653',7);
+INSERT INTO Preguntas VALUES (163,'El resultado de sumar 1/4 + 1/4 es igual a','2/8','2/4','1/16','2/4',7);
 INSERT INTO Preguntas VALUES (164,'Andrés tenía 12 barcos de juguete y regala 2 a su hermana. Antonio tenía 16 barcos y ha perdido 6. ¿Quién tiene más barcos?','Andrés','Antonio','Ambos igual','Ambos igual',7);
 INSERT INTO Preguntas VALUES (165,'72 + 64','163','126','136','136',7);
 INSERT INTO Preguntas VALUES (166,'Al comprar una TV de 4500.00$ a mi padre le cobraron el IVA del 16% ¿Cuanto pagó de IVA mi padre?','5220$','270$','720$','720$',7);
