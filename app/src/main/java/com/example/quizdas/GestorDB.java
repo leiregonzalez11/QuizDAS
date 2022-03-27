@@ -41,7 +41,6 @@ public class GestorDB extends SQLiteOpenHelper{
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         if (sInstance == null) {
-            context.deleteDatabase("quizDB");
             sInstance = new GestorDB(context.getApplicationContext());
         }
         return sInstance;
