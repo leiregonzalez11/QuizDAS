@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Inicio">
 
     <ImageView
@@ -51,6 +52,7 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="274dp"
         android:layout_height="65dp"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="iniciarSesion"
         android:text="Iniciar Sesión"
@@ -67,6 +69,7 @@
         android:id="@+id/buttonWhatIs"
         android:layout_width="274dp"
         android:layout_height="65dp"
+        android:background="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="whatIs"
         android:text="@string/whatis"
@@ -83,6 +86,7 @@
         android:id="@+id/buttonRegistro"
         android:layout_width="275dp"
         android:layout_height="63dp"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="registrase"
         android:text="Registrarse"
@@ -99,6 +103,7 @@
         android:id="@+id/buttonLogout"
         android:layout_width="277dp"
         android:layout_height="60dp"
+        android:background="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="salir"
         android:text="Salir"

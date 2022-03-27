@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".numPreguntas">
 
     <ImageView
@@ -30,12 +31,14 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.43"
+        android:theme="@style/CampoTexto"/>
 
     <Button
         android:id="@+id/buttonJugar"
         android:layout_width="217dp"
         android:layout_height="53dp"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="jugar"
         android:text="Jugar"
@@ -54,13 +57,17 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.529"
+        android:theme="@style/CampoTexto"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

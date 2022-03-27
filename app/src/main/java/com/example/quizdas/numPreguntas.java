@@ -13,10 +13,15 @@ import android.widget.Toast;
 
 public class numPreguntas extends AppCompatActivity {
 
+    private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num_preguntas);
+
+        Bundle datos = this.getIntent().getExtras();
+        email = datos.getString("email");
     }
 
     public void jugar (View view){
@@ -46,12 +51,14 @@ public class numPreguntas extends AppCompatActivity {
                     intent.putExtra("categoria",categoria);
                     intent.putExtra("numPreguntas",numPreg);
                     intent.putExtra("tipo", tipo);
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 }else{
                     Log.d("Jugar", "jugarrrrrrrr Aleatorio ");
                     Intent intent = new Intent(this, Jugar.class);
                     intent.putExtra("numPreguntas",numPreg);
                     intent.putExtra("tipo", tipo);
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 }
             }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:foregroundTint="#CA00FF"
+    android:foregroundTint="#00CA00FF"
     tools:context=".Jugar">
 
     <ImageView
@@ -23,11 +23,12 @@
         android:id="@+id/buttonresp3"
         android:layout_width="345dp"
         android:layout_height="90dp"
+        android:background="#2196F3"
+        android:clickable='true'
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
-        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -39,11 +40,12 @@
         android:id="@+id/buttonresp2"
         android:layout_width="345dp"
         android:layout_height="90dp"
+        android:background="#03A9F4"
+        android:clickable='true'
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
-        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -55,11 +57,12 @@
         android:id="@+id/buttonresp1"
         android:layout_width="345dp"
         android:layout_height="90dp"
+        android:background="#00BCD4"
+        android:clickable='true'
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
-        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -101,15 +104,15 @@
         android:id="@+id/buttonSig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#CA00FF"
-        android:backgroundTint="#CA00FF"
-        android:drawableTint="#CA00FF"
+        android:background="#4A148C"
+        android:backgroundTint="#4A148C"
+        android:drawableTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:text="Siguiente"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:iconTint="#CA00FF"
+        app:iconTint="#4A148C"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

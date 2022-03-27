@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".condicionesUso">
 
     <ImageView
@@ -69,6 +70,7 @@
         android:id="@+id/volverButton"
         android:layout_width="168dp"
         android:layout_height="51dp"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="volver"
         android:text="Volver"

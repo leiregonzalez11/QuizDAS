@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 public class bienvenida extends AppCompatActivity {
 
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class bienvenida extends AppCompatActivity {
 
         /*Recuperación de datos de la actividad anterior*/
         Bundle datos = this.getIntent().getExtras();
-        String email = datos.getString("email");
+        email = datos.getString("email");
 
         String nameUser = dbHelper.obtenerNombreUser(email);
         textUser.setText("¡Bienvenid@ " + nameUser + "!");
@@ -47,14 +49,17 @@ public class bienvenida extends AppCompatActivity {
     }
 
     public void aleatorio(View view){
+
         Intent intent = new Intent(this, numPreguntas.class);
         intent.putExtra("tipo", "aleatorio");
+        intent.putExtra("email", email);
         startActivity(intent);
         finish();
     }
 
     public void categorias(View view){
         Intent intent = new Intent(this, elegirCategorias.class);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 

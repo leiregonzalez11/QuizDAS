@@ -42,6 +42,13 @@
     <string name="dialog_correcta">Eres un@ crack..</string>
     <string name="dialog_buttoncorrectaaceptar">Aceptar</string>
     <string name="queEsQuizDAS">¿Qué es QuizDAS?</string>
-
-
+    <string name="queEs">QuizDAS es un juego de entretenimiento con el que podrás poner a prueba tus conocimientos sobre diversos temas de cultura general: Historia,
+        moda, deportes, ciencia, entre otros.\n\n Su dinámica es muy sencilla: trata de acertar la respuesta correcta entre varias opciones de una pregunta determinada.
+        \n ¿Te atreves a jugar?</string>
+    <string name="menos25acertadas"> ¡Qué desastre!</string>
+    <string name="menos50acertadas"> Oh, oh... hay que estudiar más...</string>
+    <string name="menos75acertadas"> Vas en buen camino, ¡Sigue asi!</string>
+    <string name="menos100acertadas"> ¡Te ha faltado muy poco! ¡Casi lo tienes!</string>
+    <string name="todaspregacertadas">Enhorabuena, ¡Eres un crack! </string>
+    <string name="MsgDespedida">¡Ha sido un placer jugar contigo!</string>
 </resources>

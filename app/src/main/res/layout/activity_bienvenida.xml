@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".bienvenida">
 
     <ImageView
@@ -56,6 +57,7 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="290dp"
         android:layout_height="60dp"
+        android:background="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="aleatorio"
         android:text="Jugar aleatorio"
@@ -72,6 +74,7 @@
         android:id="@+id/buttonRegistro"
         android:layout_width="290dp"
         android:layout_height="60dp"
+        android:background="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="categorias"
         android:text="Elegir Categorias"
@@ -88,6 +91,7 @@
         android:id="@+id/buttonLogout"
         android:layout_width="290dp"
         android:layout_height="60dp"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:onClick="cerrarSesion"
         android:text="Cerrar Sesión"

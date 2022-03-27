@@ -15,6 +15,7 @@ public class Jugar extends AppCompatActivity {
     private boolean correcta = true;
     private int numPregCorrectas = 0;
     private int pregActual = 0;
+    private String email;
     private Pregunta [] preguntas;
 
     @Override
@@ -25,6 +26,7 @@ public class Jugar extends AppCompatActivity {
         Bundle datos = this.getIntent().getExtras();
         String tipo = datos.getString("tipo");
         int numPregs = datos.getInt("numPreguntas");
+        email = datos.getString("email");
         GestorDB dbHelper = GestorDB.getInstance(this);
         preguntas = new Pregunta[numPregs];
         if (tipo.equals("noAleatorio")){
@@ -91,28 +93,25 @@ public class Jugar extends AppCompatActivity {
         Button bresp1 = findViewById(R.id.buttonresp1);
         Button bresp2 = findViewById(R.id.buttonresp2);
         Button bresp3 = findViewById(R.id.buttonresp3);
-        boolean correcta = true;
-
-        //Habilitamos los botones
+        boolean correcta = false;
 
         //Comprobamos el botón que ha sido pulsado y comprobamos si la respuesta es correcta
-        if (bresp1.isPressed() || bresp2.isPressed() || bresp3.isPressed()){
-            //bresp1.setClickable(false);
-            //bresp2.setClickable(false);
-            //bresp3.setClickable(false);
-            if (bresp1.isPressed() && !preguntas[pregActual].getResp1().equals(preguntas[pregActual].getRespCorrecta())){
-                correcta = false;
-                Log.d("Pregunta", "respuesta 1 elegida");
-            } else if (bresp2.isPressed() && !preguntas[pregActual].getResp2().equals(preguntas[pregActual].getRespCorrecta())){
-                correcta = false;
-                Log.d("Pregunta", "respuesta 2 elegida");
-            }else if (bresp3.isPressed() && !preguntas[pregActual].getResp3().equals(preguntas[pregActual].getRespCorrecta())){
-                correcta = false;
-                Log.d("Pregunta", "respuesta 3 elegida");
+
+        if (bresp1.isPressed()){
+            if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp1())) {
+                correcta = true;
+            }
+        } else if (bresp2.isPressed()){
+            if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp2())) {
+                correcta = true;
+            }
+        } else if (bresp3.isPressed()){
+            if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp3())){
+                correcta = true;
             }
         }
 
-        if (correcta) numPregCorrectas++; //Si la respuesta ha sido correcta la sumamos
+        if (correcta) {numPregCorrectas++; }//Si la respuesta ha sido correcta la sumamos
 
         pregActual++;
         if (pregActual<preguntas.length-1) { //Mientras  haya preguntas que mostrar
@@ -124,9 +123,14 @@ public class Jugar extends AppCompatActivity {
             mostrarPreguntaActual();
         }
         if (pregActual==preguntas.length) { //Si es la última pregunta
+            System.out.println(numPregCorrectas);
+            System.out.println(preguntas.length);
             Intent intent = new Intent(this, Terminar.class);
             intent.putExtra("pregsCorrectas", numPregCorrectas);
             intent.putExtra("totalPregs", preguntas.length);
+            intent.putExtra("email", email);
+            startActivity(intent);
+            finish();
 
         }
 

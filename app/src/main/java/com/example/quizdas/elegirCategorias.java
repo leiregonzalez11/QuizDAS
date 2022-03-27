@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 public class elegirCategorias extends AppCompatActivity {
 
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,9 @@ public class elegirCategorias extends AppCompatActivity {
 
         GestorDB dbHelper = GestorDB.getInstance(this);
         String [] categorias = dbHelper.obtenerCategorias();
+
+        Bundle datos = this.getIntent().getExtras();
+        email = datos.getString("email");
 
         ListView catView = findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, R.id.textRow, categorias);
@@ -42,6 +47,7 @@ public class elegirCategorias extends AppCompatActivity {
         Intent intent = new Intent(this, numPreguntas.class);
         intent.putExtra("tipo", "noAleatorio");
         intent.putExtra("categoria", cat);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 

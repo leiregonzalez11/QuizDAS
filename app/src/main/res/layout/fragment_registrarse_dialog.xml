@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrarseDialogFragment"
-    android:fontFamily="@font/bubblegum_sans">
+    android:background="#FFFFFF"
+    android:fontFamily="@font/bubblegum_sans"
+    tools:context=".RegistrarseDialogFragment">
 
 </FrameLayout>

@@ -5,6 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:foregroundTint="#3B8424BF"
     tools:context=".Registrarse">
 
@@ -90,19 +91,21 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="textEmailAddress"
-        android:textColor="#2E2D2D"
+        android:textColor="#050505"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.499"
+        android:theme="@style/CampoTexto"/>
 
     <Button
         android:id="@+id/buttonRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4A148C"
         android:fontFamily="@font/bubblegum_sans"
         android:text="Registrarse"
         android:textSize="20sp"
@@ -111,7 +114,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintVertical_bias="0.906"
+        />
 
     <EditText
         android:id="@+id/textPasswdRegistro"
@@ -120,13 +124,15 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="textPassword"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614" />
+        app:layout_constraintVertical_bias="0.614"
+        android:theme="@style/CampoTexto"/>
 
     <EditText
         android:id="@+id/textPasswdRegistro2"
@@ -135,18 +141,25 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="textPassword"
+        android:singleLine="true"
+        android:textColor="#000000"
+        android:textColorHighlight="#0C0303"
+        android:textColorHint="#0C0303"
+        android:textColorLink="#1E0808"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.735"
+        android:theme="@style/CampoTexto"/>
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="322dp"
         android:layout_height="33dp"
+        android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/bubblegum_sans"
         android:text="Acepto las condiciones de uso de esta aplicación"
         android:textColor="#AB47BC"
@@ -157,7 +170,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.807" />
+        app:layout_constraintVertical_bias="0.807"
+        android:theme="@style/CampoTexto"/>
 
     <TextView
         android:id="@+id/textView5"
@@ -229,13 +243,17 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="phone"
+        android:singleLine="false"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintVertical_bias="0.389"
+        android:colorControlNormal="#BC4A148C"
+        android:theme="@style/CampoTexto"/>
 
     <EditText
         android:id="@+id/textNombre"
@@ -244,12 +262,15 @@
         android:ems="10"
         android:fontFamily="@font/bubblegum_sans"
         android:inputType="textPersonName"
+        android:singleLine="false"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintVertical_bias="0.256"
+        android:theme="@style/CampoTexto"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
