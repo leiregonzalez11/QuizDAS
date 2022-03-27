@@ -26,13 +26,16 @@ public class Terminar extends AppCompatActivity {
 
         TextView textMsgPreguntas = findViewById(R.id.textMsgPreguntas);
 
-        if (pregsAcertadas/pregsTotales < 0.25){
+        double division = (double) pregsAcertadas/pregsTotales;
+        System.out.println(division);
+
+        if (division < 0.25){
             textMsgPreguntas.setText(R.string.menos25acertadas);
-        } else if (pregsAcertadas/pregsTotales >= 0.25 && pregsAcertadas/pregsTotales < 0.5){
+        } else if (division >= 0.25 && division < 0.5){
             textMsgPreguntas.setText(R.string.menos50acertadas);
-        } else if (pregsAcertadas/pregsTotales >= 0.5 && pregsAcertadas/pregsTotales < 0.75){
+        } else if (division >= 0.5 && division < 0.75){
             textMsgPreguntas.setText(R.string.menos75acertadas);
-        } else if (pregsAcertadas/pregsTotales >= 0.75 && pregsAcertadas/pregsTotales < 1){
+        } else if (division >= 0.75 && division < 1){
             textMsgPreguntas.setText(R.string.menos100acertadas);
         }else if (pregsAcertadas/pregsTotales == 1){
             textMsgPreguntas.setText(R.string.todaspregacertadas);

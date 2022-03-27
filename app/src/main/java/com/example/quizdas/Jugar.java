@@ -51,21 +51,24 @@ public class Jugar extends AppCompatActivity {
         bresp1.setOnClickListener((view -> {
             bresp2.setEnabled(false);
             bresp3.setEnabled(false);
+            validarRespuestas(1);
         }));
 
         bresp2.setOnClickListener((view -> {
             bresp1.setEnabled(false);
             bresp3.setEnabled(false);
+            validarRespuestas(2);
         }));
 
         bresp3.setOnClickListener((view -> {
             bresp1.setEnabled(false);
             bresp2.setEnabled(false);
+            validarRespuestas(3);
         }));
 
         Button buttonSig = findViewById(R.id.buttonSig);
         buttonSig.setOnClickListener((view -> {
-            validarRespuestas();
+            //validarRespuestas();
         }));
 
     }
@@ -88,7 +91,7 @@ public class Jugar extends AppCompatActivity {
         resp3.setText(preguntas[pregActual].getResp3());
     }
 
-    public void validarRespuestas(){
+    public void validarRespuestas(int boton){
 
         Button bresp1 = findViewById(R.id.buttonresp1);
         Button bresp2 = findViewById(R.id.buttonresp2);
@@ -97,15 +100,15 @@ public class Jugar extends AppCompatActivity {
 
         //Comprobamos el botón que ha sido pulsado y comprobamos si la respuesta es correcta
 
-        if (bresp1.isPressed()){
+        if (boton == 1){
             if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp1())) {
                 correcta = true;
             }
-        } else if (bresp2.isPressed()){
+        } else if (boton == 2){
             if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp2())) {
                 correcta = true;
             }
-        } else if (bresp3.isPressed()){
+        } else if (boton == 3){
             if (preguntas[pregActual].getRespCorrecta().equals(preguntas[pregActual].getResp3())){
                 correcta = true;
             }
