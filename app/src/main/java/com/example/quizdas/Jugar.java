@@ -66,11 +66,6 @@ public class Jugar extends AppCompatActivity {
             validarRespuestas(3);
         }));
 
-        Button buttonSig = findViewById(R.id.buttonSig);
-        buttonSig.setOnClickListener((view -> {
-            //validarRespuestas();
-        }));
-
     }
 
     //Actualizamos los datos de la View
@@ -117,15 +112,11 @@ public class Jugar extends AppCompatActivity {
         if (correcta) {numPregCorrectas++; }//Si la respuesta ha sido correcta la sumamos
 
         pregActual++;
-        if (pregActual<preguntas.length-1) { //Mientras  haya preguntas que mostrar
+        if (pregActual<preguntas.length) { //Mientras  haya preguntas que mostrar
             mostrarPreguntaActual();
         }
-        if (pregActual==preguntas.length-1) { //Si es la última pregunta
-            Button bSig = findViewById(R.id.buttonSig);
-            bSig.setText("Terminar");
-            mostrarPreguntaActual();
-        }
-        if (pregActual==preguntas.length) { //Si es la última pregunta
+
+        else { //Si es la última pregunta
             System.out.println(numPregCorrectas);
             System.out.println(preguntas.length);
             Intent intent = new Intent(this, Terminar.class);

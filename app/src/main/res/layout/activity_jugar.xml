@@ -31,10 +31,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintVertical_bias="0.812" />
 
     <Button
         android:id="@+id/buttonresp2"
@@ -48,10 +47,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.631" />
+        app:layout_constraintVertical_bias="0.653" />
 
     <Button
         android:id="@+id/buttonresp1"
@@ -65,10 +63,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="344dp"
@@ -99,26 +96,6 @@
             app:layout_constraintVertical_bias="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/buttonSig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#4A148C"
-        android:backgroundTint="#4A148C"
-        android:drawableTint="#4A148C"
-        android:fontFamily="@font/bubblegum_sans"
-        android:text="Siguiente"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:iconTint="#4A148C"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
