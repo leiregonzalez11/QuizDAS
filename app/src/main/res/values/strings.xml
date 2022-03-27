@@ -34,4 +34,9 @@
     </string>
     <string name="msgBienvenida">¿Qué te apetece hacer hoy?</string>
     <string name="catPregunta">Elige tus categorías favoritas para jugar:</string>
+    <string name="numpreg">¿Cuántas preguntas quieres jugar?</string>
+    <string name="minmaxpreg">El número de preguntas tiene que ser mínimo 1 y máximo 20</string>
+    <string name="numpregvacio">El número de preguntas no puede estar vacío</string>
+    <string name="noitemSelected">El número de preguntas no puede estar vacío</string>
+
 </resources>

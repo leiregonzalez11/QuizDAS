@@ -61,7 +61,11 @@ public class Registrarse extends AppCompatActivity{
             valido = false;
         }
 
-        //Validamos el DNI
+        /*//Validamos el DNI
+
+        NOTA: Actualmente no se utiliza el DNI en ninguna validación de la aplicación, pero no se descarta utilizarlo en
+              futuras mejoras de la aplicación.
+
         EditText textDNI = findViewById(R.id.textDNI);
         String dni = textDNI.getText().toString();
         Pattern dniregex = Pattern.compile("[0-9]{8}[A-Z]");
@@ -82,7 +86,7 @@ public class Registrarse extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), getString(R.string.dniYaExiste), Toast.LENGTH_SHORT).show();
             textDNI.setText("");
             valido = false;
-        }
+        }*/
 
         //Validamos el teléfono, en caso de que hubiera
         EditText texttlfno = findViewById(R.id.textPhone);
@@ -118,7 +122,7 @@ public class Registrarse extends AppCompatActivity{
         }
 
         //Validamos la contraseña
-        //NOTA: No se comprueba si las contraseñas de confirmación no son correctas, ya que, en caso de que no coincidan, salta ya un error.
+        //NOTA: No se comprueba si la contraseña de confirmación no son correctas, ya que, en caso de que no coincidan, salta ya un error.
         EditText textPasswd1 = findViewById(R.id.textPasswdRegistro);
         String passwd = textPasswd1.getText().toString();
         EditText textPasswd2 = findViewById(R.id.textPasswdRegistro2);
@@ -157,9 +161,9 @@ public class Registrarse extends AppCompatActivity{
         EditText textNombre = findViewById(R.id.textNombre);
         String nombre = textNombre.getText().toString();
         values.put("nombre", nombre);
-        EditText textDNI = findViewById(R.id.textDNI);
+        /*EditText textDNI = findViewById(R.id.textDNI);
         String dni = textDNI.getText().toString();
-        values.put("dni", dni);
+        values.put("dni", dni);*/
         EditText texttlfno = findViewById(R.id.textPhone);
         String tlfno = texttlfno.getText().toString();
         values.put("tel", tlfno);

@@ -12,6 +12,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class GestorDB extends SQLiteOpenHelper{
 
@@ -43,10 +46,10 @@ public class GestorDB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLitedatabase){
-        crearTablas();
-        insertarCategorias();
+        crearTablas(sqLitedatabase);
+        insertarCategorias(sqLitedatabase);
         try {
-            insertarPreguntas();
+            insertarPreguntas(sqLitedatabase);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,13 +60,11 @@ public class GestorDB extends SQLiteOpenHelper{
 
     }
 
-    public void crearTablas(){
+    public void crearTablas(SQLiteDatabase sqLiteDatabase){
 
-        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         //Esquema de la tabla Usuario
         String query1 = "CREATE TABLE IF NOT EXISTS Usuario (idUser INTEGER NOT NULL PRIMARY KEY AutoIncrement," +
                 "nombre VARCHAR(30) NOT NULL, " +
-                "dni VARCHAR(9) NOT NULL UNIQUE," +
                 "tel int(9)," +
                 "email VARCHAR NOT NULL UNIQUE," +
                 "password VARCHAR(15) NOT NULL);";
@@ -79,9 +80,9 @@ public class GestorDB extends SQLiteOpenHelper{
         //Esquema de la tabla Usuario
         String query3 = "CREATE TABLE IF NOT EXISTS Preguntas (idPreg INTEGER NOT NULL PRIMARY KEY, "+
                 "pregunta VARCHAR NOT NULL, " +
-                "respuesta1 VARCHAR NOT NULL, " +
-                "respuesta2 VARCHAR NOT NULL," +
-                "respuesta3 VARCHAR NOT NULL," +
+                "resp1 VARCHAR NOT NULL, " +
+                "resp2 VARCHAR NOT NULL," +
+                "resp3 VARCHAR NOT NULL," +
                 "respCorrecta VARCHAR NOT NULL," +
                 "catPegunta INT NOT NULL, " +
                 "FOREIGN KEY (catPegunta) REFERENCES Categoria(idCat));";
@@ -91,17 +92,14 @@ public class GestorDB extends SQLiteOpenHelper{
 
     }
 
-    public void insertarCategorias(){
+    public void insertarCategorias(SQLiteDatabase sqLiteDatabase){
 
-        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         String query = "INSERT INTO Categoria VALUES (1, 'Deportes'),(2, 'Entretenimiento'),(3, 'Historia'),(4, 'Geografia'),(5, 'Ciencias'), " +
                 "(6, 'Lengua y Arte'),(7, 'Matematicas'),(8, 'Musica'),(9, 'Gastronomia'),(10, 'Moda'),(11, 'Tecnología');";
         sqLiteDatabase.execSQL(query);
     }
 
-    public void insertarPreguntas() throws IOException {
-
-        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+    public void insertarPreguntas(SQLiteDatabase sqLiteDatabase) throws IOException {
 
         //Carga de datos desde un archivo .txt usando res/raw
         InputStream file = context.getResources().openRawResource(R.raw.preguntas);
@@ -137,17 +135,6 @@ public class GestorDB extends SQLiteOpenHelper{
         return existe;
     }
 
-    public boolean buscarDni(String dni){
-        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
-
-        boolean existe = true;
-        Cursor c = sqLiteDatabase.rawQuery("SELECT idUser FROM Usuario WHERE dni = \'" + dni + "\';", null);
-        if (!c.moveToNext()){
-            existe = false;
-        }
-        return existe;
-    }
-
     public boolean validarContraseña(String email, String passwd){
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         boolean existe = true;
@@ -176,7 +163,6 @@ public class GestorDB extends SQLiteOpenHelper{
 
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
 
-        boolean existe = true;
         String nameCat = "";
         int i = 0;
         String [] categorias = new String[11];
@@ -188,6 +174,34 @@ public class GestorDB extends SQLiteOpenHelper{
             i++;
         }
         return categorias;
+    }
+
+    public void obtenerPreguntas(String categoria, int numPreg){
+
+        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+
+        //Obtenemos el número de preguntas total de la categoria seleccionadas
+        int numPreguntasTotal = 0;
+        Cursor c = sqLiteDatabase.rawQuery("SELECT COUNT(idPreg) FROM Preguntas WHERE catPregunta = \'"+ categoria + "\');", null);
+        while (c.moveToNext()){
+            numPreguntasTotal = c.getInt(0);
+        }
+
+        //Obtenemos los ids de las preguntas de la categoría
+
+        int[] idPregs = new int[numPreguntasTotal];
+        int i = 0;
+        Cursor cu = sqLiteDatabase.rawQuery("SELECT idPreg FROM Preguntas WHERE catPregunta = \'"+ categoria + "\');", null);
+        while (c.moveToNext()){
+            int idPreg = c.getInt(0);
+            idPregs[i] = idPreg;
+            i++;
+        }
+
+        Log.d("Id Preguntas",idPregs.toString());
+
+
+
     }
 
 }

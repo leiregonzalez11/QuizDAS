@@ -14,11 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
     }
 
-    /** Called when the user taps the Entrar button */
     public void entrar(View view) {
         Intent intent = new Intent(this, Inicio.class);
         startActivity(intent);
