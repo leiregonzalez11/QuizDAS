@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +17,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class GestorDB extends SQLiteOpenHelper{
 
@@ -73,7 +76,7 @@ public class GestorDB extends SQLiteOpenHelper{
 
         //Esquema de la tabla Categoria
         String query2 = "CREATE TABLE IF NOT EXISTS Categoria (idCat INT NOT NULL PRIMARY KEY, "+
-                "categoria VARCHAR(15) NOT NULL)";
+                "categoria VARCHAR NOT NULL)";
         Log.d("Tabla Categoria", query2);
         sqLiteDatabase.execSQL(query2);
 
@@ -84,8 +87,8 @@ public class GestorDB extends SQLiteOpenHelper{
                 "resp2 VARCHAR NOT NULL," +
                 "resp3 VARCHAR NOT NULL," +
                 "respCorrecta VARCHAR NOT NULL," +
-                "catPegunta INT NOT NULL, " +
-                "FOREIGN KEY (catPegunta) REFERENCES Categoria(idCat));";
+                "catPregunta INT NOT NULL, " +
+                "FOREIGN KEY (catPregunta) REFERENCES Categoria(idCat));";
 
         Log.d("Tabla Preguntas", query3);
         sqLiteDatabase.execSQL(query3);
@@ -94,7 +97,7 @@ public class GestorDB extends SQLiteOpenHelper{
 
     public void insertarCategorias(SQLiteDatabase sqLiteDatabase){
 
-        String query = "INSERT INTO Categoria VALUES (1, 'Deportes'),(2, 'Entretenimiento'),(3, 'Historia'),(4, 'Geografia'),(5, 'Ciencias'), " +
+        String query = "INSERT INTO Categoria VALUES (1,'Deportes'),(2,'Entretenimiento'),(3,'Historia'),(4,'Geografia'),(5,'Ciencias'), " +
                 "(6, 'Lengua y Arte'),(7, 'Matematicas'),(8, 'Musica'),(9, 'Gastronomia'),(10, 'Moda'),(11, 'Tecnología');";
         sqLiteDatabase.execSQL(query);
     }
@@ -122,6 +125,7 @@ public class GestorDB extends SQLiteOpenHelper{
     public void insertarUsuario(ContentValues values){
         SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
         sqLiteDatabase.insert("Usuario", null, values);
+        sqLiteDatabase.close();
     }
 
     public boolean buscarUsuario(String email){
@@ -132,6 +136,7 @@ public class GestorDB extends SQLiteOpenHelper{
         if (!c.moveToNext()){
             existe = false;
         }
+
         return existe;
     }
 
@@ -144,6 +149,7 @@ public class GestorDB extends SQLiteOpenHelper{
             if (!passwd.equals(password))
                 existe = false;
         }
+
         return existe;
     }
 
@@ -156,6 +162,7 @@ public class GestorDB extends SQLiteOpenHelper{
             name = c.getString(0);
 
         }
+
         return name;
     }
 
@@ -173,35 +180,65 @@ public class GestorDB extends SQLiteOpenHelper{
             categorias[i] = nameCat;
             i++;
         }
+
         return categorias;
     }
 
-    public void obtenerPreguntas(String categoria, int numPreg){
+    public Pregunta [] obtenerPreguntas(String categoria, int numPreg) {
 
-        SQLiteDatabase sqLiteDatabase = sInstance.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = sInstance.getReadableDatabase();
 
         //Obtenemos el número de preguntas total de la categoria seleccionadas
         int numPreguntasTotal = 0;
-        Cursor c = sqLiteDatabase.rawQuery("SELECT COUNT(idPreg) FROM Preguntas WHERE catPregunta = \'"+ categoria + "\');", null);
-        while (c.moveToNext()){
+        Cursor c = sqLiteDatabase.rawQuery("SELECT COUNT(idPreg) FROM Preguntas WHERE catPregunta = (SELECT idCat FROM Categoria WHERE categoria=\'" + categoria + "\');", null);
+        while (c.moveToNext()) {
             numPreguntasTotal = c.getInt(0);
         }
+        c.close();
 
         //Obtenemos los ids de las preguntas de la categoría
 
         int[] idPregs = new int[numPreguntasTotal];
         int i = 0;
-        Cursor cu = sqLiteDatabase.rawQuery("SELECT idPreg FROM Preguntas WHERE catPregunta = \'"+ categoria + "\');", null);
-        while (c.moveToNext()){
-            int idPreg = c.getInt(0);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT idPreg FROM Preguntas WHERE catPregunta = (SELECT idCat FROM Categoria WHERE categoria=\'" + categoria + "\');", null);
+        while (cursor.moveToNext()) {
+            int idPreg = cursor.getInt(0);
             idPregs[i] = idPreg;
             i++;
         }
+        cursor.close();
 
-        Log.d("Id Preguntas",idPregs.toString());
+        Stack<Integer> idPregsJuego = new Stack<Integer>();
 
+        //Elegimos las preguntas al azar (sin repeticion)
+        for (int j = 0; j < numPreg; j++) {
+            int pos = (int) (Math.random() * (idPregs[idPregs.length - 1] - idPregs[0] + 1) + idPregs[0]);
+            while (idPregsJuego.contains(pos)) {
+                pos = (int) (Math.random() * (idPregs[idPregs.length - 1] - idPregs[0] + 1) + idPregs[0]);
+            }
+            idPregsJuego.push(pos);
+            Log.d("Preguntas:", idPregsJuego.toString());
+        }
 
+        //Obtenemos los valores de las preguntas
 
+        Pregunta[] preguntas = new Pregunta[numPreg];
+        int k = 0;
+        while (!idPregsJuego.isEmpty()) {
+            Cursor cu = sqLiteDatabase.rawQuery("SELECT pregunta, resp1, resp2, resp2, respCorrecta FROM Preguntas WHERE idPreg = " + idPregsJuego.pop() + ";", null);
+            while (cu.moveToNext()) {
+                String pregunta = cu.getString(0);
+                String resp1 = cu.getString(1);
+                String resp2 = cu.getString(2);
+                String resp3 = cu.getString(3);
+                String respCorrecta = cu.getString(4);
+                Pregunta preg = new Pregunta(pregunta, resp1, resp2, resp3, respCorrecta);
+                Log.d("Pregunta", resp1);
+                preguntas[k] = preg;
+                k++;
+            }
+            cu.close();
+        }
+        return preguntas;
     }
-
 }

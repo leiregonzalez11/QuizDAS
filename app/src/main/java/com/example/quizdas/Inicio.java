@@ -17,7 +17,8 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
 
         /*Cargamos la BD...*/
-        GestorDB.getInstance(this);
+        GestorDB dbHelper = GestorDB.getInstance(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
     }
 
     /** Called when the user taps the Iniciar Sesión button */
