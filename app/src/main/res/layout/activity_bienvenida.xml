@@ -57,6 +57,7 @@
         android:layout_width="290dp"
         android:layout_height="60dp"
         android:fontFamily="@font/bubblegum_sans"
+        android:onClick="aleatorio"
         android:text="Jugar aleatorio"
         android:textSize="20sp"
         android:textStyle="bold"

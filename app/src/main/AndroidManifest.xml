@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizDAS">
         <activity
+            android:name=".Terminar"
+            android:exported="false" />
+        <activity
             android:name=".queEsQuizDAS"
             android:exported="false" />
         <activity

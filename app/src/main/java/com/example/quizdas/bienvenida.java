@@ -46,11 +46,12 @@ public class bienvenida extends AppCompatActivity {
         manager.notify(1, builder.build());
     }
 
-    /*public void aleatorio(View view){
-        Intent intent = new Intent(this, numpreg.class);
+    public void aleatorio(View view){
+        Intent intent = new Intent(this, numPreguntas.class);
+        intent.putExtra("tipo", "aleatorio");
         startActivity(intent);
         finish();
-    }*/
+    }
 
     public void categorias(View view){
         Intent intent = new Intent(this, elegirCategorias.class);

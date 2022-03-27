@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:foregroundTint="#CA00FF"
     tools:context=".Jugar">
 
     <ImageView
@@ -19,12 +21,13 @@
 
     <Button
         android:id="@+id/buttonresp3"
-        android:layout_width="339dp"
-        android:layout_height="88dp"
+        android:layout_width="345dp"
+        android:layout_height="90dp"
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
+        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,12 +37,13 @@
 
     <Button
         android:id="@+id/buttonresp2"
-        android:layout_width="343dp"
-        android:layout_height="94dp"
+        android:layout_width="345dp"
+        android:layout_height="90dp"
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
+        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -49,12 +53,13 @@
 
     <Button
         android:id="@+id/buttonresp1"
-        android:layout_width="344dp"
-        android:layout_height="89dp"
+        android:layout_width="345dp"
+        android:layout_height="90dp"
         android:fontFamily="@font/bubblegum_sans"
         android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
+        android:clickable='true'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -91,6 +96,26 @@
             app:layout_constraintVertical_bias="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/buttonSig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CA00FF"
+        android:backgroundTint="#CA00FF"
+        android:drawableTint="#CA00FF"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="Siguiente"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:iconTint="#CA00FF"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.907" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

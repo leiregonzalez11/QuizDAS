@@ -40,6 +40,7 @@ public class elegirCategorias extends AppCompatActivity {
 
     public void siguiente (String cat){
         Intent intent = new Intent(this, numPreguntas.class);
+        intent.putExtra("tipo", "noAleatorio");
         intent.putExtra("categoria", cat);
         startActivity(intent);
     }
